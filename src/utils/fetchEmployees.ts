@@ -2,9 +2,7 @@ import { defaultLimitCount } from "globalTypes/constants";
 import {IEditEmployeesData, IEmployeesData} from "globalTypes/employeesTypes";
 
 const ROCKY_TEMPLE = 'https://rocky-temple-83495.herokuapp.com';
-
-//https://rocky-temple-83495.herokuapp.com/employees/${id}
-// https://rocky-temple-83495.herokuapp.com/employees/${id}
+const ROCKY_TEMPLE_TASKS = 'https://rocky-temple-83495.herokuapp.com';
 
 export const getEmployees = async (page: number) => {
     const employeesRes = await fetch(`${ROCKY_TEMPLE}/employees?_page=${page}&_limit=${defaultLimitCount}`);
@@ -46,4 +44,14 @@ export const editEmployee = async (id: number | string, fetchBody: IEditEmployee
     });
 
     return await getEmployees(page);
+}
+
+export const getEmployee = async (id: string) => {
+    const employeeRes = await fetch(`${ROCKY_TEMPLE}/employees/${id}`);
+    return employeeRes.json()
+}
+
+export const getEmployeeTasks = async () => {
+    const tasksRes = await fetch(`${ROCKY_TEMPLE_TASKS}/tasks`);
+    return tasksRes.json();
 }

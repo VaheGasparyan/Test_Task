@@ -3,8 +3,7 @@ import {IEditTask, ITasks} from "globalTypes/tasksTypes";
 import {IEmployeesData} from "../globalTypes/employeesTypes";
 
 const ROCKY_TEMPLE = 'https://rocky-temple-83495.herokuapp.com';
-                                                    //https://rocky-temple-83495.herokuapp.com/task
-                                                    //https://rocky-temple-83495.herokuapp.com/tasks?_page=3&_limit=5
+
 export const getTasks = async (page: number) => {
     const tasksRes = await fetch(`${ROCKY_TEMPLE}/tasks?_page=${page}&_limit=${defaultLimitCount}`);
     return await tasksRes.json();

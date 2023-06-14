@@ -31,7 +31,6 @@ const AddTasks:FC<IAddTasksProps> = ({ handleClick, page }) => {
         setLoading(true);
         try {
             const task = getNewTask(event.currentTarget);
-            console.log(task)
             const taskRes = await addTask(page, task);
             dispatch(setTasks(taskRes));
             handleClick()
