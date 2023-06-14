@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {IEmployeesInitialState} from "globalTypes/employeesTypes";
+import {statusTypes} from "globalTypes/statusTypes";
 
 const initialState:IEmployeesInitialState = {
-    status: 'loading',
+    status: statusTypes.loading,
     employees: []
 }
 
@@ -12,7 +13,7 @@ const employeesSlice = createSlice({
     reducers: {
         setEmployees: (state, action) => {
             state.employees = action.payload;
-            state.status = 'ok';
+            state.status = statusTypes.ok;
         }
     }
 });

@@ -1,0 +1,67 @@
+.add_tasks {
+    position: fixed;
+    background: rgba(0, 0, 0, .5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: .3s ease-in-out;
+}
+
+
+.add_tasks form {
+    border: 3px solid var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    background: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.add_tasks form input {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid var(--bg-color);
+    padding-left: .6rem;
+}
+
+.add_tasks form button {
+    margin-top: 1rem;
+    background: green;
+    color: var(--text-color);
+    font-size: 1rem;
+    border: 0;
+    padding: .2rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.add_tasks button {
+    background: red;
+    color: var(--text-color);
+    font-size: 1rem;
+    border: 0;
+    padding: .2rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.add_tasks form select {
+    width: 100%;
+    outline: none;
+    padding: 0.2rem 1rem;
+    border: 2px solid var(--bg-color);
+    border-radius: 7px;
+}
