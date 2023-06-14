@@ -1,6 +1,10 @@
+import './loading.css';
+
 const Loading = () => {
     return (
-        <h2>Loading...</h2>
+        <section className='loading'>
+            <h2>Loading...</h2>
+        </section>
     );
 };
 
