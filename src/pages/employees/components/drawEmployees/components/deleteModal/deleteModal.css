@@ -1,0 +1,54 @@
+.delete_modal {
+    position: fixed;
+    background: rgba(0, 0, 0, .5);
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s ease-in-out;
+}
+
+.delete_modal.active {
+    top: 0;
+    bottom: 0;
+}
+
+.delete_modal .delete_modal_inner {
+    border: 3px solid var(--bg-color);
+    width: 300px;
+    height: 150px;
+    border-radius: 10px;
+    background: var(--text-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete_modal .delete_modal_inner p {
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.delete_modal .delete_modal_inner .btns {
+    margin-top: 1rem;
+}
+
+.delete_modal .delete_modal_inner .btns button {
+    margin-left: 1rem;
+    background: green;
+    color: var(--text-color);
+    font-weight: bold;
+    border: 0;
+    padding: .2rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.delete_modal .delete_modal_inner .btns button:last-child {
+    background: red;
+}
