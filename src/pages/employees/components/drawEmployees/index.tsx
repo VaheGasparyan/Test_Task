@@ -7,6 +7,7 @@ import {v4 as uuid} from 'uuid';
 
 import AddEmployee from "./components/addEmployee";
 import DeleteModal from "./components/deleteModal";
+import EditModal from "./components/editModal";
 
 import './drawEmployees.css';
 
@@ -19,10 +20,32 @@ const DrawEmployees:FC<IDrawEmployeesProps> = ({ handleNextOrPrev, page }) => {
         surname: '',
         employeeId: ''
     });
+    const [editModal, setEditModal] = useState({
+        edit: false,
+        employeeId: ''
+    });
     const { employees } = useAppSelector(state => state.employeesSlice);
 
     const handleOpen = () => {
         setShowModalWindow(prevState => !prevState);
+    }
+
+    const handleEdit = (id?: string) => {
+        if(id) {
+            setEditModal(prevState => {
+                return {
+                    edit: !prevState.edit,
+                    employeeId: id
+                }
+            })
+        } else {
+            setEditModal(prevState => {
+                return {
+                    ...prevState,
+                    edit: !prevState.edit,
+                }
+            })
+        }
     }
 
     const handleOpenDeleteModal = (name?: string, surname?: string, employeeId?: string) => {
@@ -62,8 +85,8 @@ const DrawEmployees:FC<IDrawEmployeesProps> = ({ handleNextOrPrev, page }) => {
                                    <p><span>Position: </span>{employee.position}</p>
 
                                    <div className="btns">
-                                       <button>Edit</button>
-                                       <button onClick={() => handleOpenDeleteModal(employee.name, employee.surname, employee.id as unknown as string)}>Delete</button>
+                                       <button onClick={() => handleEdit(String(employee.id))}>Edit</button>
+                                       <button onClick={() => handleOpenDeleteModal(employee.name, employee.surname, String(employee.id))}>Delete</button>
                                    </div>
                                </div>
                            )
@@ -81,7 +104,7 @@ const DrawEmployees:FC<IDrawEmployeesProps> = ({ handleNextOrPrev, page }) => {
                    </div>
                </div>
             </div>
-
+            {editModal.edit && <EditModal page={page} editModal={editModal.edit} employeeId={editModal.employeeId} handleEdit={handleEdit} />}
         </section>
     );
 };

@@ -1,0 +1,63 @@
+.edit_modal {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: .3s ease-in-out;
+}
+
+.edit_modal.active {
+    top: 0;
+    bottom: 0;
+}
+
+.edit_modal .edit_modal_inner {
+    border: 3px solid var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    background: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.edit_modal .edit_modal_inner input {
+    width: 100%;
+    font-size: 1.3rem;
+    padding-left: .6rem;
+    outline: none;
+    margin-bottom: 1.5rem;
+    border: 0;
+    border-bottom: 2px solid #000;
+}
+
+.edit_modal .edit_modal_inner .btn button {
+    font-size: 1.3rem;
+    border: 0;
+    color: var(--text-color);
+    background: green;
+    padding: .2rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit_modal button {
+    font-size: 1.3rem;
+    border: 0;
+    color: var(--text-color);
+    background: red;
+    padding: .2rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
