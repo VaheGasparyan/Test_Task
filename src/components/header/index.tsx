@@ -1,6 +1,11 @@
+import {useLocation, useNavigate} from "react-router-dom";
+
 import './header.css';
 
 const Header = () => {
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
+
     return (
         <header>
             <div className="container">
@@ -10,8 +15,8 @@ const Header = () => {
                     </div>
                     <nav className="navbar">
                         <ul>
-                            <li>Employees</li>
-                            <li>Tasks</li>
+                            <li onClick={() => navigate('/')}><span className={pathname === '/' ? 'active' : ''}></span>Employees</li>
+                            <li onClick={() => navigate('tasks')}><span className={pathname === '/tasks' ? 'active' : ''}></span>Tasks</li>
                         </ul>
                     </nav>
                 </div>

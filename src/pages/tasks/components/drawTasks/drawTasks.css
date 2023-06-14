@@ -1,0 +1,78 @@
+.tasks_inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tasks_inner .task {
+    margin-top: 2rem;
+    border: 2px solid var(--text-color);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.tasks_inner .task h2 {
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.tasks_inner .task h2 span {
+    font-weight: bold;
+}
+
+.tasks_inner .task p {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: .7rem;
+    font-weight: 500;
+}
+
+.tasks_inner .task p span  {
+    font-weight: bold;
+}
+
+.tasks_inner .btns {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tasks_inner .btns .add_btn {
+    margin-right: 1.5rem;
+}
+
+.tasks_inner .btns .add_btn button {
+    background: transparent;
+    font-size: 1.5rem;
+    border: 0;
+    color: var(--text-color);
+    font-weight: bold;
+    cursor: pointer
+}
+
+.tasks_inner .btns .next_prev button {
+    margin-left: 1rem;
+    font-size: 1rem;
+    background: red;
+    border: 0;
+    padding: .3rem 1rem;
+    border-radius: 7px;
+    cursor: pointer;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.tasks_inner .btns .next_prev button:first-child {
+    background: #760000;
+}
+
+.tasks_inner .btns .next_prev button:last-child {
+    background: green;
+}
+
+.tasks_inner .btns .next_prev button:last-child:disabled {
+    background: #003700;
+}

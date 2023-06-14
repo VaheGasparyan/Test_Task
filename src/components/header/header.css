@@ -27,6 +27,7 @@ header .container .header_inner .navbar ul {
 }
 
 header .container .header_inner .navbar ul li {
+    position: relative;
     list-style: none;
     font-size: 1.3rem;
     font-weight: bold;
@@ -34,3 +35,33 @@ header .container .header_inner .navbar ul li {
     margin-left: 1rem;
     cursor: pointer
 }
+
+header .container .header_inner .navbar ul li span {
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background: var(--text-color);
+    transition: .3s ease-in-out;
+    transform: scale(0);
+}
+
+header .container .header_inner .navbar ul li:hover span {
+    transform: scale(1);
+}
+
+header .container .header_inner .navbar ul li span.active {
+    transform: scale(1);
+}
+
+header .container .header_inner .navbar ul li:first-child span {
+    top: 27px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+header .container .header_inner .navbar ul li:last-child span {
+    top: 27px;
+    width: 100%;
+    border-radius: 10px;
+}
+
