@@ -7,5 +7,6 @@ export interface IEmployeesData {
     name: string;
     surname: string;
     email: string;
-    position: string
+    position: string;
+    id: number
 }

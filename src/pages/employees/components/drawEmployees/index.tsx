@@ -6,21 +6,50 @@ import {NextOrPrev} from "globalTypes/enums";
 import {v4 as uuid} from 'uuid';
 
 import AddEmployee from "./components/addEmployee";
+import DeleteModal from "./components/deleteModal";
 
 import './drawEmployees.css';
 
 
 const DrawEmployees:FC<IDrawEmployeesProps> = ({ handleNextOrPrev, page }) => {
     const [showModalWindow, setShowModalWindow] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState({
+        show: false,
+        name: '',
+        surname: '',
+        employeeId: ''
+    });
     const { employees } = useAppSelector(state => state.employeesSlice);
 
     const handleOpen = () => {
         setShowModalWindow(prevState => !prevState);
     }
 
+    const handleOpenDeleteModal = (name?: string, surname?: string, employeeId?: string) => {
+        if(name && surname && employeeId) {
+            setShowDeleteModal(prevState => {
+                return {
+                    show: !prevState.show,
+                    name,
+                    surname,
+                    employeeId,
+                }
+            })
+        } else {
+            setShowDeleteModal(prevState => {
+                return {
+                    ...prevState,
+                    show: !prevState.show,
+                }
+            })
+        }
+
+    }
+
     return (
         <section className='employees'>
             <AddEmployee showModalWindow={showModalWindow} handleOpen={handleOpen} page={page} />
+            <DeleteModal page={page} show={showDeleteModal.show} name={showDeleteModal.name} surname={showDeleteModal.surname} employeeId={showDeleteModal.employeeId} handleOpenDeleteModal={handleOpenDeleteModal} />
             <div className="container">
                <div className="employee_wrap">
                    {
@@ -34,7 +63,7 @@ const DrawEmployees:FC<IDrawEmployeesProps> = ({ handleNextOrPrev, page }) => {
 
                                    <div className="btns">
                                        <button>Edit</button>
-                                       <button>Delete</button>
+                                       <button onClick={() => handleOpenDeleteModal(employee.name, employee.surname, employee.id as unknown as string)}>Delete</button>
                                    </div>
                                </div>
                            )
