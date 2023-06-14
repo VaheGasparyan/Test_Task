@@ -5,6 +5,8 @@ import {getTasks} from "utils/fetchTasks";
 import {defaultPageCount} from "globalTypes/constants";
 import {setTasks} from "features/tasksSlice";
 import {statusTypes} from "globalTypes/statusTypes";
+import {NextOrPrev} from "globalTypes/enums";
+
 
 import ShowElement from "components/showElement";
 import Loading from "components/loading";
@@ -27,9 +29,13 @@ const Tasks = () => {
         fetchTasksData()
     }, [page]);
 
+    const addPage = (nextOrPrev: NextOrPrev) => {
+        setPage(prevState => nextOrPrev === NextOrPrev.NEXT ? prevState + defaultPageCount : prevState - defaultPageCount);
+    }
+
     return (
         <ShowElement isShow={isShow} fallback={<Loading />}>
-            <DrawTasks page={page} />
+            <DrawTasks page={page} addPage={addPage} />
         </ShowElement>
     );
 };

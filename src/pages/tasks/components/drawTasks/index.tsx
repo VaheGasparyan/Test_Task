@@ -2,24 +2,51 @@ import {FC, useState} from "react";
 import {IDrawTasksProps} from "./types";
 import {useAppSelector} from "store/hooks";
 
-import { v4 as uuid } from 'uuid';
+import {v4 as uuid} from 'uuid';
+import {NextOrPrev} from "globalTypes/enums";
 
 import AddTasks from "./components/addTasks";
+import DeleteModal from "./components/deleteModal";
 
 import './drawTasks.css';
 
 
-const DrawTasks:FC<IDrawTasksProps> = ({ page }) => {
+const DrawTasks:FC<IDrawTasksProps> = ({ page, addPage }) => {
     const {tasks} = useAppSelector(state => state.tasksSlice);
     const [showAddForm, setShowAddForm] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState({
+        show: false,
+        taskId: '',
+        name: ''
+    });
 
     const handleClick = () => {
         setShowAddForm(prevState => !prevState);
     }
 
+    const handleDelete = (name?: string, taskId?: string) => {
+        if(name && taskId) {
+            setShowDeleteModal(prevState => {
+                return {
+                    show: !prevState.show,
+                    name,
+                    taskId
+                }
+            })
+        } else {
+            setShowDeleteModal(prevState => {
+                return {
+                    ...prevState,
+                    show: !prevState.show
+                }
+            })
+        }
+    }
+
     return (
         <section className='tasks'>
             {showAddForm &&  <AddTasks handleClick={handleClick} page={page} />}
+            {showDeleteModal.show && <DeleteModal showDeleteModal={showDeleteModal} page={page} handleDelete={handleDelete} />}
             <div className='container'>
                 <div className="tasks_inner">
                     {
@@ -31,6 +58,10 @@ const DrawTasks:FC<IDrawTasksProps> = ({ page }) => {
                                     <p><span>End Date: </span>{task.endDate}</p>
                                     <p><span>Employee Id: </span>{task.employeeId}</p>
                                     <p><span>Description: </span>{task.description}</p>
+                                    <div className="task_btns">
+                                        <button>Edit</button>
+                                        <button onClick={() => handleDelete(task.name, String(task.id))}>Delete</button>
+                                    </div>
                                 </div>
                             )
                         })
@@ -40,8 +71,8 @@ const DrawTasks:FC<IDrawTasksProps> = ({ page }) => {
                             <button onClick={handleClick}>Add Task+</button>
                         </div>
                         <div className="next_prev">
-                            <button disabled={page === 1}>Prev</button>
-                            <button disabled={page === 3}>Next</button>
+                            <button onClick={() => addPage(NextOrPrev.PREV)} disabled={page === 1}>Prev</button>
+                            <button onClick={() => addPage(NextOrPrev.NEXT)} disabled={page === 3}>Next</button>
                         </div>
                     </div>
                 </div>
