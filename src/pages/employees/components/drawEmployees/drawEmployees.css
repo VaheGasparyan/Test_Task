@@ -65,8 +65,12 @@ section .container {
     border-radius: 5px;
 }
 
-.container .employee_wrap .employee .btns button:last-child {
+.container .employee_wrap .employee .btns button:nth-child(2) {
     background: red;
+}
+
+.container .employee_wrap .employee .btns button:last-child {
+    background: green;
 }
 
 .control_btns {

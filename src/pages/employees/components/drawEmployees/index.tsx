@@ -1,4 +1,5 @@
 import {FC, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {useAppSelector} from "store/hooks";
 import {IDrawEmployeesProps} from "./types";
 import {NextOrPrev} from "globalTypes/enums";
@@ -13,6 +14,7 @@ import './drawEmployees.css';
 
 
 const DrawEmployees:FC<IDrawEmployeesProps> = ({ handleNextOrPrev, page }) => {
+    const navigate = useNavigate();
     const [showModalWindow, setShowModalWindow] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState({
         show: false,
@@ -66,7 +68,10 @@ const DrawEmployees:FC<IDrawEmployeesProps> = ({ handleNextOrPrev, page }) => {
                 }
             })
         }
+    }
 
+    const goTo = (id: string) => {
+        navigate(`employee/${id}`);
     }
 
     return (
@@ -87,6 +92,7 @@ const DrawEmployees:FC<IDrawEmployeesProps> = ({ handleNextOrPrev, page }) => {
                                    <div className="btns">
                                        <button onClick={() => handleEdit(String(employee.id))}>Edit</button>
                                        <button onClick={() => handleOpenDeleteModal(employee.name, employee.surname, String(employee.id))}>Delete</button>
+                                       <button onClick={() => goTo(String(employee.id))}>Show More</button>
                                    </div>
                                </div>
                            )
