@@ -6,6 +6,7 @@ import {getEmployee, getEmployeeTasks} from "utils/fetchEmployees";
 import {setEmployee, setEmployeesTasks} from "features/employeeSlice";
 import {statusTypes} from "globalTypes/statusTypes";
 import {ITasks} from "globalTypes/tasksTypes";
+import { v4 as uuid } from 'uuid';
 
 
 import ShowElement from "components/showElement";
@@ -60,12 +61,11 @@ const Employee = () => {
                             {
                                 tasks.map(task => {
                                     return (
-                                        <div className='task'>
+                                        <div key={uuid()} className='task'>
                                             <h2><span>Name: </span>{task.name}</h2>
                                             <p><span>Start Date: </span>{task.startDate}</p>
                                             <p><span>End Date: </span>{task.endDate}</p>
                                             <p><span>Description: </span>{task.description}</p>
-                                            <p><span>empid: </span>{task.employeeId}</p>
                                         </div>
                                     )
                                 })
