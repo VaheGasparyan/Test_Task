@@ -7,6 +7,7 @@ import {NextOrPrev} from "globalTypes/enums";
 
 import AddTasks from "./components/addTasks";
 import DeleteModal from "./components/deleteModal";
+import EditModal from "./components/editModal";
 
 import './drawTasks.css';
 
@@ -19,6 +20,10 @@ const DrawTasks:FC<IDrawTasksProps> = ({ page, addPage }) => {
         taskId: '',
         name: ''
     });
+    const [showEdit, setShowEdit] = useState({
+        show: false,
+        taskId: ''
+    })
 
     const handleClick = () => {
         setShowAddForm(prevState => !prevState);
@@ -43,6 +48,25 @@ const DrawTasks:FC<IDrawTasksProps> = ({ page, addPage }) => {
         }
     }
 
+    const handleEdit = (id?: string) => {
+        if(id) {
+            setShowEdit(prevState => {
+                return {
+                    ...prevState,
+                    show: !prevState.show,
+                    taskId: id
+                }
+            })
+        } else {
+            setShowEdit(prevState => {
+                return {
+                    ...prevState,
+                    show: !prevState.show
+                }
+            })
+        }
+    }
+
     return (
         <section className='tasks'>
             {showAddForm &&  <AddTasks handleClick={handleClick} page={page} />}
@@ -59,7 +83,7 @@ const DrawTasks:FC<IDrawTasksProps> = ({ page, addPage }) => {
                                     <p><span>Employee Id: </span>{task.employeeId}</p>
                                     <p><span>Description: </span>{task.description}</p>
                                     <div className="task_btns">
-                                        <button>Edit</button>
+                                        <button onClick={() => handleEdit(String(task.id))}>Edit</button>
                                         <button onClick={() => handleDelete(task.name, String(task.id))}>Delete</button>
                                     </div>
                                 </div>
@@ -77,6 +101,7 @@ const DrawTasks:FC<IDrawTasksProps> = ({ page, addPage }) => {
                     </div>
                 </div>
             </div>
+            { showEdit.show && <EditModal page={page} taskId={showEdit.taskId} handleEdit={handleEdit} /> }
         </section>
     );
 };
