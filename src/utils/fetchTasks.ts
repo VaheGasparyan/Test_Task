@@ -54,3 +54,12 @@ export const editTask = async (page: number, id: string, task: IEditTask) => {
 
     return await getTasks(page);
 }
+
+export const searchTask = async (value: string, setting: string, page:number) => {
+    if(value) {
+        const taskRes = await fetch(`${ROCKY_TEMPLE}/tasks?${setting}=${value}`);
+        return taskRes.json();
+    } else {
+        return await getTasks(page);
+    }
+}
