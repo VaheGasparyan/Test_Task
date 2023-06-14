@@ -1,5 +1,5 @@
 import {defaultLimitCount} from "globalTypes/constants";
-import {ITasks} from "globalTypes/tasksTypes";
+import {IEditTask, ITasks} from "globalTypes/tasksTypes";
 import {IEmployeesData} from "../globalTypes/employeesTypes";
 
 const ROCKY_TEMPLE = 'https://rocky-temple-83495.herokuapp.com';
@@ -39,6 +39,18 @@ export const getEmployeesId = async () => {
 export const deleteTask = async (page: number, id: string) => {
     await fetch(`${ROCKY_TEMPLE}/tasks/${id}`, {
         method: 'DELETE'
+    });
+
+    return await getTasks(page);
+}
+
+export const editTask = async (page: number, id: string, task: IEditTask) => {
+    await fetch(`${ROCKY_TEMPLE}/tasks/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
     });
 
     return await getTasks(page);

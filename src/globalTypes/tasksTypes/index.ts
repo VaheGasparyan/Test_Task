@@ -12,3 +12,11 @@ export interface ITasks {
     name: string
     startDate: string
 }
+
+export interface IEditTask {
+    name: string;
+    description: string;
+    startDate: string;
+    endDate: string
+    employeeId: string
+}
