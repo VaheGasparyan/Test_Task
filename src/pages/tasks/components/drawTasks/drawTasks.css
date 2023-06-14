@@ -65,7 +65,7 @@
     font-weight: bold;
 }
 
-.tasks_inner .btns .next_prev button:first-child {
+.tasks_inner .btns .next_prev button:first-child:disabled {
     background: #760000;
 }
 
@@ -75,4 +75,26 @@
 
 .tasks_inner .btns .next_prev button:last-child:disabled {
     background: #003700;
+}
+
+.tasks_inner .task_btns {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.tasks_inner .task_btns button {
+    margin-right: 1rem;
+    border: 0;
+    background: blue;
+    color: var(--text-color);
+    padding: .2rem 1rem;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.tasks_inner .task_btns button:last-child {
+    background: red;
 }

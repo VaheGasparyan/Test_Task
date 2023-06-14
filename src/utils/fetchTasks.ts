@@ -35,3 +35,11 @@ export const getEmployeesId = async () => {
         return typeof employee.id === 'string' ? employee.id : Math.floor(employee.id);
     })
 }
+
+export const deleteTask = async (page: number, id: string) => {
+    await fetch(`${ROCKY_TEMPLE}/tasks/${id}`, {
+        method: 'DELETE'
+    });
+
+    return await getTasks(page);
+}

@@ -1,0 +1,50 @@
+.modal {
+    position: fixed;
+    background: rgba(0, 0, 0, .5);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .modal_inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--text-color);
+    height: 135px;
+}
+
+.modal .modal_inner p {
+    margin-bottom: 1rem;
+}
+
+.modal .modal_inner .btns {
+    margin-top: .8rem;
+}
+
+.modal .modal_inner .btns button {
+    margin-left: 1rem;
+    border: 0;
+    background: green;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: .2rem 1rem;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.modal .modal_inner .btns button:first-child {
+    margin-left: 0;
+}
+
+.modal .modal_inner .btns button:last-child {
+    background: red;
+}
