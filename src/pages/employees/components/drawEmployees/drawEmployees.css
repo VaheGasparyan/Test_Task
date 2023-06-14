@@ -1,0 +1,114 @@
+section {
+    background: var(--bg-color);
+    height: 100vh;
+}
+
+section .container {
+    max-width: 1500px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.container .employee_wrap {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    flex-wrap: wrap;
+}
+
+.container .employee_wrap .employee {
+    margin-top: 2rem;
+    border: 2px solid var(--text-color);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-left: 1rem;
+    width: 25%;
+    height: 220px;
+}
+
+.container .employee_wrap .employee h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.container .employee_wrap .employee h2 span {
+    font-weight: bold;
+}
+
+.container .employee_wrap .employee p {
+    font-size: 1.2rem;
+    margin-bottom: .7rem;
+    color: var(--text-color);
+}
+
+.container .employee_wrap .employee p span {
+    font-weight: bold;
+}
+
+.container .employee_wrap .employee .btns {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.container .employee_wrap .employee .btns button {
+    margin-left: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    background: blue;
+    color: var(--text-color);
+    font-weight: bold;
+    border: 0;
+    padding: .3rem 1rem;
+    border-radius: 5px;
+}
+
+.container .employee_wrap .employee .btns button:last-child {
+    background: red;
+}
+
+.control_btns {
+    display: flex;
+    justify-content: center;
+    background: var(--bg-color);
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.control_btns .add_btn {
+    margin-right: 2rem;
+}
+
+.control_btns .add_btn button {
+    background: transparent;
+    border: 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.control_btns .next_prev button {
+    margin-left: 1rem;
+    background: red;
+    color: var(--text-color);
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+    padding: .3rem .5rem;
+    border-radius: 5px;
+}
+
+.control_btns .next_prev button:first-child:disabled {
+    background: #4a0000;
+}
+
+.control_btns .next_prev button:last-child {
+    background: green;
+}
+
+.control_btns .next_prev button:last-child:disabled {
+    background: #003300;
+}

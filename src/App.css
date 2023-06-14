@@ -6,5 +6,8 @@
 }
 
 :root {
-
+    --bg-color: #393E46;
+    --text-color: #fff;
+    --header-color: #9336B4;
+    --shadow-color: #2C3333;
 }
