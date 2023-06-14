@@ -98,3 +98,31 @@
 .tasks_inner .task_btns button:last-child {
     background: red;
 }
+
+.search {
+    margin-top: 10rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search .select {
+    margin-right: 2.5rem;
+}
+
+.search .select select {
+    width: 150px;
+    font-size: 1rem;
+    outline: none;
+    padding: .2rem .7rem;
+    border-radius: 7px;
+}
+
+.search .search_input input {
+    width: 300px;
+    font-size: 1rem;
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 7px;
+    border: 0;
+}

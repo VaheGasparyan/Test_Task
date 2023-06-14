@@ -1,9 +1,11 @@
-import {FC, useState} from "react";
+import {ChangeEvent, FC, useEffect, useState} from "react";
 import {IDrawTasksProps} from "./types";
-import {useAppSelector} from "store/hooks";
+import {useAppDispatch, useAppSelector} from "store/hooks";
+import {setTasks} from "features/tasksSlice";
 
 import {v4 as uuid} from 'uuid';
 import {NextOrPrev} from "globalTypes/enums";
+import {searchTask} from "utils/fetchTasks";
 
 import AddTasks from "./components/addTasks";
 import DeleteModal from "./components/deleteModal";
@@ -13,6 +15,9 @@ import './drawTasks.css';
 
 
 const DrawTasks:FC<IDrawTasksProps> = ({ page, addPage }) => {
+    const dispatch = useAppDispatch();
+    const [searchValue, setSearchValue] = useState('');
+    const [selectValue, setSelectValue] = useState('name_like');
     const {tasks} = useAppSelector(state => state.tasksSlice);
     const [showAddForm, setShowAddForm] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState({
@@ -23,7 +28,16 @@ const DrawTasks:FC<IDrawTasksProps> = ({ page, addPage }) => {
     const [showEdit, setShowEdit] = useState({
         show: false,
         taskId: ''
-    })
+    });
+
+    useEffect(() => {
+        let timeoutId = setTimeout(async () => {
+            const taskRes = await searchTask(searchValue, selectValue, page);
+            dispatch(setTasks(taskRes));
+        }, 800);
+
+        return () => clearTimeout(timeoutId);
+    }, [searchValue])
 
     const handleClick = () => {
         setShowAddForm(prevState => !prevState);
@@ -67,6 +81,10 @@ const DrawTasks:FC<IDrawTasksProps> = ({ page, addPage }) => {
         }
     }
 
+    const changeSearchValue = (event: ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(event.target.value);
+    }
+
     return (
         <section className='tasks'>
             {showAddForm &&  <AddTasks handleClick={handleClick} page={page} />}
@@ -98,6 +116,19 @@ const DrawTasks:FC<IDrawTasksProps> = ({ page, addPage }) => {
                             <button onClick={() => addPage(NextOrPrev.PREV)} disabled={page === 1}>Prev</button>
                             <button onClick={() => addPage(NextOrPrev.NEXT)} disabled={page === 3}>Next</button>
                         </div>
+                    </div>
+                </div>
+                <div className="search">
+                    <div className="select">
+                        <select onChange={(event: ChangeEvent<HTMLSelectElement>) => setSelectValue(event.target.value)}>
+                            <option value="name_like">Name</option>
+                            <option value="startDate">Start Date</option>
+                            <option value="endDate">End Date</option>
+                            <option value="description_like">Description</option>
+                        </select>
+                    </div>
+                    <div className="search_input">
+                        <input onChange={changeSearchValue} value={searchValue} placeholder='Search task...' type="text"/>
                     </div>
                 </div>
             </div>
