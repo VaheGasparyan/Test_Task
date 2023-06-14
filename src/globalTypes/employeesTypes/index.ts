@@ -8,5 +8,12 @@ export interface IEmployeesData {
     surname: string;
     email: string;
     position: string;
-    id: number
+    id: number | string
+}
+
+export interface IEditEmployeesData {
+    name: string;
+    surname: string;
+    email: string;
+    position: string;
 }
